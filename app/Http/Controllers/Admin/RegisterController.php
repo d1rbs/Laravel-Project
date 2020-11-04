@@ -7,7 +7,7 @@ use App\services\RoleService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
-use App\Roles;
+use App\Role;
 
 
 /**

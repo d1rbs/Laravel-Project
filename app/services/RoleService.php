@@ -31,7 +31,7 @@ class RoleService
     }
 
     /**
-     * @return \App\Roles[]|\Illuminate\Database\Eloquent\Collection
+     * @return \App\Role[]|\Illuminate\Database\Eloquent\Collection
      */
     public function create()
     {
@@ -45,7 +45,7 @@ class RoleService
     }
 
     /**
-     * @return \App\Roles[]|\Illuminate\Database\Eloquent\Collection
+     * @return \App\Role[]|\Illuminate\Database\Eloquent\Collection
      */
     public function getRole()
     {

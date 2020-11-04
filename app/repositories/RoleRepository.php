@@ -4,7 +4,7 @@
 namespace App\repositories;
 
 
-use App\Roles;
+use App\Role;
 
 /**
  * Class RoleRepository
@@ -13,10 +13,10 @@ use App\Roles;
 class RoleRepository
 {
     /**
-     * @return Roles[]|\Illuminate\Database\Eloquent\Collection
+     * @return Role[]|\Illuminate\Database\Eloquent\Collection
      */
     public function getRole()
     {
-        return  Roles::all();
+        return  Role::all();
     }
 }
