@@ -8,7 +8,10 @@ use Illuminate\Notifications\Notifiable;
 
 class Role extends Model
 {
-    use Notifiable;
+    /**
+     * @var string
+     */
+    protected $table = 'role';
 
     /**
      * The attributes that are mass assignable.
