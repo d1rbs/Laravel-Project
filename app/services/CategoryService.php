@@ -35,11 +35,12 @@ class CategoryService
      */
     public function create()
     {
+        $category = new Category();
+
         /* ---------------------Create $slug-----------------------*/
-        $category_slug = $this->cyrToLat->trasliterate(($this->request->input('name')));
+        $category_slug = $this->cyrToLat->trasliterate(($this->request->input('name')), $category);
 
         /* ---------------------Download input in BD and save-----------------------*/
-        $category = new Category();
         $category->name = $this->request->input('name');
         $category->slug = $category_slug;
         $category->description = $this->request->input('description');

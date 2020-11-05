@@ -31,9 +31,11 @@ class ArticleRepository
      */
     public function search(Category $category = null)
     {
-        $query = Articles::select('articles.*', 'article_category_relation.category_id')
+        /*$query = Articles::select('articles.*')
             ->join('article_category_relation', 'article_category_relation.article_id', '=', 'articles.id')
-            ->orderByDesc('id');
+            ->orderByDesc('id');*/
+
+        $query = Articles::orderByDesc('id');
 
         if($category)
         {

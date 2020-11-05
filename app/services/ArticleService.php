@@ -6,7 +6,6 @@ namespace App\services;
 
 use App\Category;
 use App\Models\Articles;
-use App\Models\Relation;
 use Illuminate\Http\Request;
 use App\repositories\ArticleRepository;
 
@@ -20,9 +19,6 @@ class ArticleService
 
     /* @var $imageChangesServices */
     private $imageChangesServices;
-
-    /* @var $relationService */
-    private $relationService;
 
     /* @var $view */
     private $view = 'index';
@@ -46,13 +42,12 @@ class ArticleService
      * @param CategoryService $categoryService
      * @param ImageChangesServices $imageChangesServices
      */
-    public function __construct(Request $request, ArticleRepository $articleRepository, CategoryService $categoryService, ImageChangesServices $imageChangesServices, RelationService $relationService)
+    public function __construct(Request $request, ArticleRepository $articleRepository, CategoryService $categoryService, ImageChangesServices $imageChangesServices)
     {
         $this->request = $request;
         $this->articleRepository = $articleRepository;
         $this->categoryService = $categoryService;
         $this->imageChangesServices = $imageChangesServices;
-        $this->relationService = $relationService;
         $this->uploader = new ImageUploaderServices();
         $this->cyrToLat = new CyrToLatServices();
     }
@@ -62,28 +57,29 @@ class ArticleService
      */
     public function create()
     {
+        //dd($this->request->input('category.0')) ;die;
+
+            $article = new Articles();
             /* ---------------------Create $slug-----------------------*/
-            $slug = $this->cyrToLat->trasliterate(($this->request->input('name')));
+            $slug = $this->cyrToLat->trasliterate(($this->request->input('name')), $article);
             /* ---------------------Download images and save-----------------------*/
             $result = $this->uploader->setSlug($slug)->saveImageArticle($this->request->file('image'));
 
-            $article = new Articles();
-            $relation = new Relation();
-
-            $article->user_id = \Auth::user()->id;
             $article->name = $this->request->input('name');
+            $article->user_id = \Auth::user()->id;
+            $article->categories = $this->request->input('category.0');
             $article->image = $result;
             $article->slug = $slug;
             $article->description = $this->request->input('description');
 
             $article->save();
 
-            $relation->article_id = $article->id;
+            /*$relation->article_id = $article->id;
             foreach($this->request->category as $category_id)
             {
                 $relation->category_id = $category_id;
                 $relation->save();
-            }
+            }*/
 
             return redirect()->back();
     }
@@ -91,7 +87,7 @@ class ArticleService
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroyArticle($id)
+   /* public function destroyArticle($id)
     {
         if($this->relationService->getRelationByID($id))
         {
@@ -102,7 +98,7 @@ class ArticleService
             $this->delete->setSlug($this->relationService->getRelationByID($id)->slug)->destroyArticle($this->relationService->getRelationByID($id));
         }
         $this->request->session()->flash('status', 'Blog successful destroy!');
-    }
+    }*/
 
     /**
      * @param string|null $slug

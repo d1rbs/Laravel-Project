@@ -38,7 +38,7 @@
                                 <img src="/storage/images/blog/{{$article->slug}}/{{$article['image']}}"
                                      alt="IMAGE DELETED" width="660" height="400"><br>
 
-                                @if(Auth::user()->status == 9 || Auth::user()->status == 3 || Auth::user()->status == 4 && Auth::user()->id == $article->user_id)
+                                @if(Auth::user()->status == 9 || Auth::user()->status == 4 || Auth::user()->status == 4 && Auth::user()->id == $article->user_id)
 
                                     <div class="form-group row row-cols-md-4">
                                         <form method="POST" action="/admin/article/destroy/{{$article->id}}">

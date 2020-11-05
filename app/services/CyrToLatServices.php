@@ -3,8 +3,6 @@
 
 namespace App\services;
 
-use App\Models\Articles;
-use App\Books;
 
 class CyrToLatServices
 {
@@ -24,7 +22,7 @@ class CyrToLatServices
      * @param string $slug
      * @return bool|false|mixed|string|string[]|null
      */
-    public function trasliterate(string $slug): string
+    public function trasliterate(string $slug, $model): string
     {
         $strlen = mb_strlen($slug);
 
@@ -36,7 +34,7 @@ class CyrToLatServices
 
         $slug = mb_strtolower($this->loop($result));
 
-        if ($this->slugValidate($slug)) {
+        if ($this->slugValidate($slug, $model)) {
             return $slug;
         } else {
             return $slug . mt_rand(0, 999);
@@ -68,15 +66,25 @@ class CyrToLatServices
 
     /**
      * @param string $slug
+     * @param string $model
      * @return bool
      */
-    private function slugValidate(string $slug): bool
+    private function slugValidate(string $slug, $model): bool
+    {
+        if ($model::where('slug', '=', $slug)->exists()){
+            return false;
+        }
+        return true;
+    }
+/*    private function slugValidate(string $slug): bool
     {
         if ($artical = Articles::where('slug', '=', $slug)->exists()){
             return false;
         }elseif($books = Books::where('slug', '=', $slug)->exists()){
             return false;
+        }elseif($category = Category::where()){
+
         }
         return true;
-    }
+    }*/
 }
