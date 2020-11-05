@@ -61,6 +61,6 @@ class CategoryService
      */
     public function getCategories()
     {
-       return $this->categoryRepository->findCategories();
+       return $this->categoryRepository->getCategories();
     }
 }

@@ -3,6 +3,10 @@
 
 namespace App\services;
 
+/**
+ * Class ImageUploaderServices
+ * @package App\services
+ */
 class ImageUploaderServices
 {
     /**
@@ -28,8 +32,8 @@ class ImageUploaderServices
      */
     public function saveImageArticle($image)
     {
-        if (!is_dir('storage/images/articles/' .  $this->slug  . '/')) {
-            mkdir('storage/images/articles/' .  $this->slug  . '/', 0777, true);
+        if (!is_dir('storage/images/blog/' .  $this->slug  . '/')) {
+            mkdir('storage/images/blog/' .  $this->slug  . '/', 0777, true);
         }
         $imageName =  $this->slug  . time() . '.' . $image->extension();
         $path = $image->storeAs('images/blog/' .  $this->slug , $imageName, 'public');
@@ -59,7 +63,7 @@ class ImageUploaderServices
     public function deleteImageArticle($values)
          {
              if($values){
-        unlink('storage/images/blog/'. $this->slug .'/'. $values->image);
+                  unlink('storage/images/blog/'. $this->slug .'/'. $values->image);
          }
              $values->image = '';
             $values->save();
@@ -71,13 +75,13 @@ class ImageUploaderServices
     public function destroyArticle($delete){
             $path = 'storage/images/blog/' .  $this->slug ;
 
-        if (\File::exists($path)) {
-
+        if (\File::exists($path))
+        {
             \File::deleteDirectory($path);
         }
            $delete->delete('id');
     }
-
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     /**
      * @param $image
      * @return string

@@ -57,8 +57,6 @@ class ArticleService
      */
     public function create()
     {
-        //dd($this->request->input('category.0')) ;die;
-
             $article = new Articles();
             /* ---------------------Create $slug-----------------------*/
             $slug = $this->cyrToLat->trasliterate(($this->request->input('name')), $article);
@@ -74,31 +72,22 @@ class ArticleService
 
             $article->save();
 
-            /*$relation->article_id = $article->id;
-            foreach($this->request->category as $category_id)
-            {
-                $relation->category_id = $category_id;
-                $relation->save();
-            }*/
-
             return redirect()->back();
     }
     /**
      * @param $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-   /* public function destroyArticle($id)
+    public function destroyArticle($id)
     {
-        if($this->relationService->getRelationByID($id))
+        if($id)
         {
-            $this->relationService->getRelationByID($id)->delete($this->relationService->getRelationByID($id)->id);
+            $this->imageChangesServices->deleteImage($id);
+            $this->uploader->setSlug($this->imageChangesServices->getArticleByID($id)->slug)->destroyArticle($this->imageChangesServices->getArticleByID($id));
         }
-        if($this->imageChangesServices->getArticleByID($id))
-        {
-            $this->delete->setSlug($this->relationService->getRelationByID($id)->slug)->destroyArticle($this->relationService->getRelationByID($id));
-        }
+
         $this->request->session()->flash('status', 'Blog successful destroy!');
-    }*/
+    }
 
     /**
      * @param string|null $slug
@@ -120,6 +109,11 @@ class ArticleService
     public function search(Category $category = null)
     {
         return $this->articleRepository->search($category);
+    }
+
+    public function getArticleByID($id)
+    {
+        return $this->articleRepository->findByID($id);
     }
 
     /**

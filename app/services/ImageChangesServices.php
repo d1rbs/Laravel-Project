@@ -15,9 +15,6 @@ class ImageChangesServices
     /* @var $changesRepository */
     private $ImageChangesRepository;
 
-    /* @var $relationService */
-    private $relationService;
-
     /* @var $update */
     private $update;
 
@@ -29,11 +26,10 @@ class ImageChangesServices
      * @param Request $request
      * @param ImageChangesRepository $changesRepository
      */
-    public function __construct(Request $request, ImageChangesRepository $ImageChangesRepository, RelationService $relationService)
+    public function __construct(Request $request, ImageChangesRepository $ImageChangesRepository)
     {
         $this->request = $request;
         $this->ImageChangesRepository = $ImageChangesRepository;
-        $this->relationService = $relationService;
         $this->delete = new ImageUploaderServices();
         $this->update = new ImageUploaderServices();
     }
@@ -69,16 +65,14 @@ class ImageChangesServices
 
     /**
      * @param $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function deleteImage($id)
     {
-        $values = $this->ImageChangesRepository->findById($id);
+        $value = $this->getArticleByID($id);
 
-        if ($values)
+        if($value)
         {
-            $this->delete->setSlug($values->slug)->deleteImageArticle($values);
-            return redirect()->back();
+            $this->delete->setSlug($value->slug)->deleteImageArticle($value);
         }
     }
 }

@@ -25,6 +25,7 @@ Route::group(['namespace'=>'Admin'], function(){
     Route::get('admin/books/create', 'BooksController@create');
     Route::post('admin/books/create', 'BooksController@create');
 
+    /*Create create*/
     Route::get('admin/role/create', 'RoleController@create');
     Route::post('admin/role/create', 'RoleController@create');
 

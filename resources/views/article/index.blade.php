@@ -12,6 +12,7 @@
             <div>
                 <ul class="boris">
                     <h5>Категорії</h5>
+
                     @foreach($categories as $category)
                         <li class="boris"><a class="boris" href="{{ url('article/'.$category->slug)}}">{{$category->name}}</a></li>
                     @endforeach

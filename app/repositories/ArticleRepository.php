@@ -31,19 +31,21 @@ class ArticleRepository
      */
     public function search(Category $category = null)
     {
-        /*$query = Articles::select('articles.*')
-            ->join('article_category_relation', 'article_category_relation.article_id', '=', 'articles.id')
-            ->orderByDesc('id');*/
-
         $query = Articles::orderByDesc('id');
 
         if($category)
         {
-            $query = $query->where('category_id', $category->id);
+            $query = $query->where('categories', $category->id);
         }
 
         $query = $query->paginate(3);
 
+        return $query;
+    }
+
+    public function findByID($id)
+    {
+        $query = Articles::find($id);
         return $query;
     }
 

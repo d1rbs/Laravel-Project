@@ -5,8 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class ReportController
+ * @package App\Http\Controllers
+ */
 class ReportController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request){
 
         if (!empty($request->all()) && $request->validate(['from' => 'date|required', 'to' => 'date|required'])) {

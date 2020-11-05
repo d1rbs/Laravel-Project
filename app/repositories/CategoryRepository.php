@@ -15,7 +15,7 @@ class CategoryRepository
     /**
      * @return Category[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function findCategories()
+    public function getCategories()
     {
         return Category::all();
     }
