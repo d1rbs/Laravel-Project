@@ -4,9 +4,6 @@
 namespace App\services;
 
 use App\repositories\RoleRepository;
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 /**
  * Class RoleService
@@ -14,9 +11,6 @@ use Illuminate\Support\Facades\Hash;
  */
 class RoleService
 {
-    /* @var $request */
-    private $request;
-
     /* @var RoleRepository */
     private $roleRepository;
 
@@ -24,9 +18,8 @@ class RoleService
      * RoleService constructor.
      * @param RoleRepository $roleRepository
      */
-    public function __construct(Request $request, RoleRepository $roleRepository)
+    public function __construct(RoleRepository $roleRepository)
     {
-        $this->request = $request;
         $this->roleRepository = $roleRepository;
     }
 
@@ -35,13 +28,7 @@ class RoleService
      */
     public function create()
     {
-        $user = new User();
-        $user->name = $this->request->input('name');
-        $user->status = $this->request->input('roles');
-        $user->email = $this->request->input('email');
-        $user->password = Hash::make($this->request->input('password'));
-
-        $user->save();
+       return $this->roleRepository->create();
     }
 
     /**

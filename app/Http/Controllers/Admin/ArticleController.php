@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    protected $path;
     /* @var Request */
     private $request;
 

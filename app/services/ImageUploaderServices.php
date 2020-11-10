@@ -3,6 +3,7 @@
 
 namespace App\services;
 
+
 /**
  * Class ImageUploaderServices
  * @package App\services
@@ -26,7 +27,6 @@ class ImageUploaderServices
     }
 
     /**
-     * @param $image
      * @param $slug
      * @return string
      */

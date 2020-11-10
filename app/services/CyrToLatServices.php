@@ -3,24 +3,34 @@
 
 namespace App\services;
 
-
+/**
+ * Class CyrToLatServices
+ * @package App\services
+ */
 class CyrToLatServices
 {
+    /* @var $new_char */
     private $new_char = '';
 
+    /* @var $cyr */
     private $cyr = array(
         'ж', 'ч', 'щ', 'ш', 'ю', 'а', 'б', 'в', 'г', 'д', 'е', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ъ', 'ь', 'я',
         'Ж', 'Ч', 'Щ', 'Ш', 'Ю', 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ъ', 'Ь', 'Я', ' ');
+
+    /* @var $lat */
     private $lat = array(
         'zh', 'ch', 'sht', 'sh', 'yu', 'a', 'b', 'v', 'g', 'd', 'e', 'z', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f', 'h', 'c', 'y', 'x', 'q',
         'Zh', 'Ch', 'Sht', 'Sh', 'Yu', 'A', 'B', 'V', 'G', 'D', 'E', 'Z', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'c', 'Y', 'X', 'Q', '-');
+
+    /* @var $special */
     private $special = array(
         '#', '$', '%', '^', '&', '*', '(', ')', '+', '=', '[', ']', '\\', '\'', ';', ',', '.', '/', '{', '}', '|', '"', ':', '<', '>', '?', '~', '!', '@', '£',
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
 
     /**
      * @param string $slug
-     * @return bool|false|mixed|string|string[]|null
+     * @param $model
+     * @return string
      */
     public function trasliterate(string $slug, $model): string
     {
@@ -66,7 +76,7 @@ class CyrToLatServices
 
     /**
      * @param string $slug
-     * @param string $model
+     * @param $model
      * @return bool
      */
     private function slugValidate(string $slug, $model): bool
@@ -76,15 +86,4 @@ class CyrToLatServices
         }
         return true;
     }
-/*    private function slugValidate(string $slug): bool
-    {
-        if ($artical = Articles::where('slug', '=', $slug)->exists()){
-            return false;
-        }elseif($books = Books::where('slug', '=', $slug)->exists()){
-            return false;
-        }elseif($category = Category::where()){
-
-        }
-        return true;
-    }*/
 }
