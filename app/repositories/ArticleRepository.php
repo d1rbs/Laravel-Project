@@ -48,11 +48,15 @@ class ArticleRepository
     {
         $query = Articles::orderByDesc('id');
 
-        if($category)
-        {
+        if ($category) {
             $query = $query->where('categories', $category->id);
         }
 
+        foreach ($query as $i)
+        {
+            $timestamp = strtotime($i->created_at);
+            $query->created_at = date('d/m/Y H:i', $timestamp);
+        }
         $query = $query->paginate(3);
 
         return $query;
@@ -68,8 +72,8 @@ class ArticleRepository
      * @param $slug
      * @return mixed
      */
-    public function findBySlug($slug){
-
+    public function findBySlug($slug)
+    {
         $query = Articles::where('slug', '=', $slug)->first();
         return $query;
     }

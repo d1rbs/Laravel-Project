@@ -19,22 +19,4 @@ class Books extends Model
         'book', 'chapter', 'description', 'active',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-   /* protected $hidden = [
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    /*protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];*/
-
 }

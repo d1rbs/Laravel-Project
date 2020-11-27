@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Illuminate\Contracts\Session\Session;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {

@@ -76,3 +76,7 @@ html, body {
     text-decoration: none;
     text-transform: uppercase;
 }
+
+.columns {
+    columns: 1 12em;
+}

@@ -39,10 +39,11 @@
 
                                 <div class="test"><a href="{{ url('article/'.$article->slug)}}">{{$article->name}}</a></div>
                             <p> Дата створення:
-                                @php
+                                {{$article->created_at}}
+                                {{--@php
                                   $timestamp = strtotime($article->created_at);
                              echo date('d/m/Y H:i', $timestamp)
-                              @endphp</p>
+                              @endphp--}}</p>
 
                             <img src="/storage/images/blog/{{$article->slug}}/{{$article['image']}}"
                                  alt="PHOTO ERRORS" width="660" height="400"><br>

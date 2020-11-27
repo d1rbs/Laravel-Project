@@ -25,7 +25,6 @@ Route::group(['namespace'=>'Admin'], function(){
     Route::get('admin/books/create', 'BooksController@create');
     Route::post('admin/books/create', 'BooksController@create');
 
-    /*Create create*/
     Route::get('admin/role/create', 'RoleController@create');
     Route::post('admin/role/create', 'RoleController@create');
 
@@ -44,6 +43,22 @@ Route::group(['namespace'=>'Admin'], function(){
     Route::get('admin/article/update/{id}', 'ArticleController@update');
     Route::post('admin/article/update/{id}', 'ArticleController@update');
 
+    /* create */
+    Route::get('admin/people/create','PeopleController@create');
+    Route::post('admin/people/create','PeopleController@create');
+
+    Route::get('admin/api/create','PeopleAPIController@create');
+
+    Route::get('admin/planet/create','PlanetsController@create');
+
+    Route::get('admin/films/create','FilmsController@create');
+
+    Route::get('admin/gender/create','GenderController@create');
+    Route::post('admin/gender/create','GenderController@create');
+
+    Route::post('admin/people/delete/{id}','PeopleAPIController@delete');
+
+
 });
 
         /*view USERS*/
@@ -61,6 +76,10 @@ Route::get('profiles/index', 'ProfileController@index');
         /*view article*/
 Route::get('article/{slug?}', 'ArticleController@index');
 
+Route::get('layouts/header_new', 'ProfileController@CreateToken');
 
+/*people*/
+Route::get('people/index', 'PeopleController@index');
+Route::get('people/view/{id}', 'PeopleController@view');
 
-
+Route::get('/reporting','ReportingController@index')->name('HomeStore');
