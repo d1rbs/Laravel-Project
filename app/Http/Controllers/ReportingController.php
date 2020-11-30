@@ -49,6 +49,7 @@ class ReportingController extends Controller
            $findWorld = $this->reportingService->search($report['homeWorld']);
         }else {
            // відправляємо пустий масив бо даних немає
+           $findWorld = [];
        }
         return view('reporting.index', [
             'homeWorld' => $homeWorld,
