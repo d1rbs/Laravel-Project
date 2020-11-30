@@ -162,10 +162,15 @@
                                 <a class="dropdown-item" href="admin/books/create">
                                     {{ __('Created chapter') }}
                                 </a>
+
                                 @if(\Auth::user()->status == 9)
                                 <a class="dropdown-item" href="admin/users/register">
                                     {{ __('Created User') }}
                                 </a>
+
+                                 <a class="dropdown-item" href="admin/people/create">
+                                        {{ __('Created User API') }}
+                                  </a>
                                     @endif
                             </div>
                         </li>

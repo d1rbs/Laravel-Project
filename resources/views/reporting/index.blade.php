@@ -11,13 +11,17 @@
                         <form action="{{ route('HomeStore') }}" method="get">
                             {{ csrf_field() }} @csrf
 
-                            <label for="homeWorld" class="col-md-4 col-form-label text-md-right">HomeWorld:</label>
+                            <div class="form-group">
+                                <div class="form-group row">
+                            <label for="homeWorld" class="col-md-4 col-form-label text-md-right">{{ __('HomeWorld:') }}</label>
                             <div  class="col-md-6">
-                                <select name="homeWorld" class="col-md-12 col-form-label text-md-right">
+                                <select name="homeWorld" class="col-md-6 col-form-label">
                                     @foreach ($homeWorld as $world)
                                         <option value="{{ $world->id }}" name="world[]">{{ $world['name'] }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                                </div>
                             </div>
 
                             <div class="form-group row mb-0">
@@ -34,7 +38,7 @@
         </div>
         {{--  @php json_encode($find, JSON_UNESCAPED_UNICODE); @endphp--}}
 
-       @if(!empty($findWorld))
+       @if(count($findWorld))
             @foreach($findWorld as $find)
                 <div class="block__items">
                     <div class="block">
@@ -49,6 +53,12 @@
                     </div>
                 </div>
             @endforeach
+           @else
+            <div class="block__items">
+                <div class="block">
+                    <h4 class="text-md-center">Даних немає!</h4>
+                </div>
+            </div>
         @endif
     </div>
 @endsection

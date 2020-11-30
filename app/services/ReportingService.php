@@ -30,7 +30,11 @@ class ReportingService
         return $this->reportingRepository->getHomeWorld();
     }
 
-    public function search($report)
+    /**
+     * @param null $report
+     * @return mixed
+     */
+    public function search($report = null)
     {
         return $this->reportingRepository->search($report);
     }

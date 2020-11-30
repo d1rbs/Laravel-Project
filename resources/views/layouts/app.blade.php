@@ -70,6 +70,13 @@
                                         {{ __('Blog') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="/people/index">
+                                        {{ __('Information Peoples') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="/reporting">
+                                        {{ __('Reporting') }}
+                                    </a>
                                 </div>
                             </li>
 

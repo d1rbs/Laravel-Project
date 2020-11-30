@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PeopleAPI;
 use App\Models\PeopleFilmsRelation;
 use App\services\PeopleFilmsRelationService;
 use App\services\ReportingService;
@@ -44,37 +43,31 @@ class ReportingController extends Controller
        if($this->request->all()){
             $this->validate($this->request, [
                 'homeWorld' => 'required',
-            ],[
-               'homeWorld.required' => 'Потрібно обовязково ввести дані в це поле',
             ]);
+
            $report = $this->request->all();
            $findWorld = $this->reportingService->search($report['homeWorld']);
-           /*foreach ($findWorld as $value){
-               $relation = $this->peopleFilmsRelationService->getFilms($value->id);
-           }*/
-        }
-//dd($findWorld);
-       $test = PeopleAPI::all();
+        }else {
+           // відправляємо пустий масив бо даних немає
+       }
         return view('reporting.index', [
             'homeWorld' => $homeWorld,
             'findWorld' => $findWorld,
-           // 'relation' => $relation,
-            'test' =>$test,
         ]);
     }
 
     public function create()
     {
-
+//
     }
 
     public function update()
     {
-
+//
     }
 
     public function delete()
     {
-
+//
     }
 }

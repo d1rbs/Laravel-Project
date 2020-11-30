@@ -36,15 +36,9 @@ class ReportingRepository extends Model
      * @param $report
      * @return mixed
      */
-    public function search($report)
+    public function search($report = null)
     {
-      // $findWorld = PeopleAPI::find()->with('films')->where('homeworld', '=', $report);
-       // $findWorld = PeopleAPI::find($report)->films;
         $findWorld = PeopleAPI::where('homeworld', '=', $report)->get();
-//dd($findWorld);
-       /* $findWorld = Planets::select('planets.id', 'people_api.*')
-            ->join('people_api', 'people_api.homeworld', '=', 'planets.id')
-            ->where('people_api.homeworld', '=', $report)->get();*/
 
         return $findWorld;
     }
